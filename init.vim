@@ -13,37 +13,44 @@ set expandtab
 let mapleader = " "
 set cursorline
 
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+
 call plug#begin()
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
-" Plug 'Pocco81/auto-save.nvim'
 
+Plug 'Pocco81/auto-save.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
-Plug 'simrat39/rust-tools.nvim'
-Plug 'lewis6991/impatient.nvim'
 
-
+" Plug 'lewis6991/impatient.nvim'
 Plug 'rust-lang/rust.vim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'simrat39/rust-tools.nvim'
+
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'karb94/neoscroll.nvim'
-Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
 
 set background=dark
 call plug#end()
@@ -54,7 +61,7 @@ let g:lightline = {
 
 set nobackup
 set nowritebackup
-set updatetime=300
+set updatetime=100
 set signcolumn=yes
 
 "switch buffers CTRL hjkl
@@ -63,11 +70,11 @@ nmap <silent> J :wincmd j<CR>
 nmap <silent> H :wincmd h<CR>
 nmap <silent> L :wincmd l<CR>
 
-nnoremap <C-w>f :MaximizerToggle<CR>
-vnoremap <C-w>f :MaximizerToggle<CR>gv
-inoremap <C-w>f :MaximizerToggle<CR>
 imap <C-v> <Nop>
 imap <C-s> <Nop>
+
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
 
 
 function! HeaderToggle() " bang for overwrite when saving vimrc
@@ -114,22 +121,10 @@ nnoremap <M-l> <C-W>5>
 nnoremap <M-j> <C-W>5-
 nnoremap <M-k> <C-W>5+
 
-"jump down / up
-" nnoremap <C-h> b
-" nnoremap <C-l> e
-" vnoremap <C-h> b
-" vnoremap <C-l> e
-
 "stop highlighting until next search
 nnoremap <esc> :noh<return><esc>
 
 let g:gruvbox_contrast_dark = 'hard'
-set background=dark
-"if has('termguicolors')
-    "set termguicolors
-"endif
-
-"colorscheme gruvbox-material
 colorscheme gruvbox
-:luafile ~/.config/nvim/config.lua
 highlight CursorLine ctermbg=0
+:luafile ~/.config/nvim/config.lua
