@@ -19,11 +19,6 @@ set smartcase
 set gdefault
 
 call plug#begin()
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-
-Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
-
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
@@ -61,7 +56,7 @@ let g:lightline = {
 
 set nobackup
 set nowritebackup
-set updatetime=100
+set updatetime=300
 set signcolumn=yes
 
 "switch buffers CTRL hjkl
@@ -104,11 +99,8 @@ else
 endif
 endfunction
 
-nmap T :call HeaderToggle()<CR>
-nmap <c-j> 4j
-nmap <c-k> 4k
-vmap <c-j> 4j
-vmap <c-k> 4k
+au Filetype cpp nmap T :call HeaderToggle()<CR>
+
 
 nmap <c-c> <esc>
 imap <c-c> <esc>
@@ -126,5 +118,25 @@ nnoremap <esc> :noh<return><esc>
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
+
 highlight CursorLine ctermbg=0
 :luafile ~/.config/nvim/config.lua
+
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
+set splitright
+set splitbelow
+
+set undodir=~/.config/nvim/.undo
+set undofile
+set relativenumber
+set ttyfast
+set lazyredraw
+" map H ^
+" map L $
+nmap <c-j> 4j
+nmap <c-k> 4k
+vmap <c-j> 4j
+vmap <c-k> 4k
