@@ -1,4 +1,3 @@
----
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "lua", "rust", "toml" },
   auto_install = true,
@@ -14,13 +13,29 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
+require("nvim-autopairs").setup {
+    fast_wrap = {
+      -- map = '<M-e>',
+      -- chars = { '{', '[', '(', '"', "'" },
+      -- pattern = [=[[%'%"%>%]%)%}%,]]=],
+      -- end_key = '$',
+      -- before_key = 'h',
+      -- after_key = 'l',
+      -- cursor_pos_before = true,
+      -- keys = 'qwertyuiopzxcvbnmasdfghjkl',
+      -- manual_position = true,
+      -- highlight = 'Search',
+      -- highlight_grey='Comment'
+    },
+}
 
-require("nvim-autopairs").setup {}
-require("auto-save").setup {}
 require("ibl").setup({
     scope = {
-        show_start = false
-    }
+        show_start = false,
+        highlight = {
+            'GruvboxRed',
+        }
+    },
 })
 
 local builtin = require('telescope.builtin')
@@ -41,26 +56,6 @@ t['zz']    = { 'zz', { '125' } }
 t['zb']    = { 'zb', { '125' } }
 require('neoscroll.config').set_mappings(t)
 
--- lspconfig.clangd.setup{
---   on_attach = on_attach,
---   cmd = {
---     "/usr/bin/clangd-15",
---     "--background-index",
---     "--pch-storage=memory",
---     "--clang-tidy=0",
---     "--suggest-missing-includes",
---     "--all-scopes-completion",
---     "--pretty",
---     "--inlay-hints",
---     "--log=verbose",
---     "--header-insertion=never",
---     "-j=4",
---     "--header-insertion-decorators",
---     "--function-arg-placeholders",
---     "--completion-style=detailed"
---   },
---   init_option = { fallbackFlags = {  "-std=c++2a"  } }
--- }
 
 local cmp = require'cmp'
 
@@ -108,8 +103,9 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  -- buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'N', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-n>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -121,7 +117,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+  buf_set_keymap("n", "<f3>", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
     -- None of this semantics tokens business.
   -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
   client.server_capabilities.semanticTokensProvider = nil
@@ -164,3 +160,30 @@ local opts = {
   },
 }
 require("rust-tools").setup(opts)
+require('crates').setup()
+
+
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup{}
+
+lspconfig.clangd.setup{
+  on_attach = on_attach,
+  cmd = {
+    "/usr/bin/clangd",
+    "--background-index",
+    "--pch-storage=memory",
+    "--clang-tidy=0",
+    "--suggest-missing-includes",
+    "--all-scopes-completion",
+    "--pretty",
+    "--inlay-hints",
+    "--log=verbose",
+    "--header-insertion=never",
+    "-j=4",
+    "--header-insertion-decorators",
+    "--function-arg-placeholders",
+    "--completion-style=detailed"
+  },
+  init_option = { fallbackFlags = {  "-std=c++2a"  } }
+}
+

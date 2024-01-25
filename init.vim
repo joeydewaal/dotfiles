@@ -22,7 +22,7 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
-Plug 'Pocco81/auto-save.nvim'
+" Plug 'Pocco81/auto-save.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
@@ -30,6 +30,7 @@ Plug 'tpope/vim-commentary'
 " Plug 'lewis6991/impatient.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'saecki/crates.nvim', { 'tag': 'stable' }
 
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -50,14 +51,12 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 set background=dark
 call plug#end()
 
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ }
+let g:lightline = {'colorscheme': 'seoul256' }
 
 set nobackup
 set nowritebackup
 set updatetime=300
-set signcolumn=yes
+set signcolumn=no " yes
 
 "switch buffers CTRL hjkl
 nmap <silent> K :wincmd k<CR>
@@ -100,6 +99,7 @@ endif
 endfunction
 
 au Filetype cpp nmap T :call HeaderToggle()<CR>
+au Filetype c nmap T :call HeaderToggle()<CR>
 
 
 nmap <c-c> <esc>
@@ -113,16 +113,15 @@ nnoremap <M-l> <C-W>5>
 nnoremap <M-j> <C-W>5-
 nnoremap <M-k> <C-W>5+
 
-"stop highlighting until next search
 nnoremap <esc> :noh<return><esc>
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
-highlight CursorLine ctermbg=0
+" highlight CursorLine ctermbg=0
 :luafile ~/.config/nvim/config.lua
 
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
@@ -134,9 +133,9 @@ set undofile
 set relativenumber
 set ttyfast
 set lazyredraw
-" map H ^
-" map L $
-nmap <c-j> 4j
-nmap <c-k> 4k
-vmap <c-j> 4j
-vmap <c-k> 4k
+
+" Delete niet in registers opslaan
+nnoremap d "_d
+xnoremap d "_d
+xnoremap p "_dP
+nmap <C-j> <Nop>
