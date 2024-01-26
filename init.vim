@@ -42,6 +42,10 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
+
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'karb94/neoscroll.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -63,6 +67,8 @@ nmap <silent> K :wincmd k<CR>
 nmap <silent> J :wincmd j<CR>
 nmap <silent> H :wincmd h<CR>
 nmap <silent> L :wincmd l<CR>
+
+
 
 imap <C-v> <Nop>
 imap <C-s> <Nop>
@@ -139,3 +145,5 @@ nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
 nmap <C-j> <Nop>
+
+highlight EndOfBuffer ctermfg=black ctermbg=black

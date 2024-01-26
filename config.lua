@@ -38,6 +38,14 @@ require("ibl").setup({
     },
 })
 
+
+require('telescope').setup{
+    defaults = {
+            file_ignore_patterns = {
+            "node_modules", "*.lock"
+        }
+    }
+}
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>f', builtin.find_files, {})
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
@@ -118,6 +126,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<f3>", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+  buf_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+  buf_set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
+  -- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.nvim-tree-api.tree.close()<CR>', opts)
     -- None of this semantics tokens business.
   -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
   client.server_capabilities.semanticTokensProvider = nil
@@ -187,3 +198,39 @@ lspconfig.clangd.setup{
   init_option = { fallbackFlags = {  "-std=c++2a"  } }
 }
 
+  local function my_on_attach(bufnr)
+    local api = require "nvim-tree.api"
+    local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+    api.config.mappings.default_on_attach(bufnr)
+
+    vim.keymap.set('n', '<leader>e',   api.tree.close,                  opts('Help'))
+  end
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
+require'nvim-web-devicons'.setup {}
+
+require("nvim-tree").setup({
+    on_attach = my_on_attach,
+    hijack_cursor = false,
+    renderer = {
+        indent_markers = {
+            enable = true
+        },
+        icons = {
+          webdev_colors = true,
+          padding = " ",
+          symlink_arrow = " ➛ ",
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = false,
+          },
+        }
+    },
+})
