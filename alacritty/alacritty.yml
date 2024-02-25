@@ -1,0 +1,92 @@
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: alacritty
+
+window:
+  # Window title
+  title: Terminal
+
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+# Make `Option` key behave as `Alt` (macOS only):
+  #   - OnlyLeft
+  #   - OnlyRight
+  #   - Both
+  #   - None (default)
+  option_as_alt: OnlyLeft
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 100000
+
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    family: RobotoMono Nerd Font
+    # The `style` can be specified to pick a specific face.
+    style: Medium
+
+  # Point size
+  size: 12.5
+
+  # # Thin strokes are suitable for retina displays, but for non-retina screens
+  # # it is recommended to set `use_thin_strokes` to `false`.
+  # use_thin_strokes: true
+
+# ==== BEGIN CUSTOM THEME ====
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1d2021'
+#     foreground: '0xd5c4a1'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '0x1d2021'
+#     cursor: '0xd5c4a1'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x1d2021'
+#     red:     '0xfb4934'
+#     green:   '0xb8bb26'
+#     yellow:  '0xfabd2f'
+#     blue:    '0x83a598'
+#     magenta: '0xd3869b'
+#     cyan:    '0x8ec07c'
+#     white:   '0xd5c4a1'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x665c54'
+#     red:     '0xfe8019'
+#     green:   '0x3c3836'
+#     yellow:  '0x504945'
+#     blue:    '0xbdae93'
+#     magenta: '0xebdbb2'
+#     cyan:    '0xd65d0e'
+#     white:   '0xfbf1c7'
+
+draw_bold_text_with_bright_colors: false
+# ==== END CUSTOM THEME ====
+
+cursor:
+    # Cursor blinking state
+    #
+    # Values for `blinking`:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+    blinking: On
+
+
+# Live config reload (changes require restart)
+live_config_reload: false
