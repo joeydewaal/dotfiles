@@ -31,7 +31,7 @@ vim.keymap.set("n", "<leader>j", function() harpoon:list():select(2) end)
 vim.keymap.set("n", "<leader>k", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader>l", function() harpoon:list():select(4) end)
 
-vim.keymap.set("n", "<leader>a", function() harpoon:list():select(5) end)
+-- vim.keymap.set("n", "<leader>a", function() harpoon:list():select(5) end)
 vim.keymap.set("n", "<leader>s", function() harpoon:list():select(6) end)
 vim.keymap.set("n", "<leader>d", function() harpoon:list():select(7) end)
 vim.keymap.set("n", "<leader>f", function() harpoon:list():select(8) end)
