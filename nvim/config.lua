@@ -236,10 +236,18 @@ local opts = {
 require("rust-tools").setup(opts)
 require('crates').setup()
 
+
 local lspconfig = require('lspconfig')
+
+-- zig
+lspconfig.zls.setup{
+    on_attach = on_attach
+}
+
 
 -- React
 require('nvim-ts-autotag').setup()
+
 lspconfig.tsserver.setup{
     on_attach = on_attach
 }
