@@ -70,7 +70,12 @@ Plug 'ThePrimeagen/vim-be-good'
 set background=dark
 call plug#end()
 
-let g:lightline = {'colorscheme': 'seoul256' }
+let g:lightline = {
+    \ 'colorscheme': 'seoul256',
+    \ 'component': {
+    \ 'filename': '%f'
+    \    }
+\}
 
 set nobackup
 set nowritebackup
