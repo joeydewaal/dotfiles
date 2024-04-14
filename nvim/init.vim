@@ -23,25 +23,39 @@ set ignorecase
 set smartcase
 set gdefault
 
+
+
 call plug#begin()
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
+Plug'christoomey/vim-tmux-navigator'
+
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'ThePrimeagen/harpoon' , { 'branch' : 'harpoon2' }
 
-"Plug 'Pocco81/auto-save.nvim'
+" Inline github info
+Plug 'f-person/git-blame.nvim'
+
 Plug 'windwp/nvim-autopairs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
 
 " Rust
-" Plug 'lewis6991/impatient.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'saecki/crates.nvim', { 'tag': 'stable' }
 
 " React
 Plug 'windwp/nvim-ts-autotag'
+
+" Zig
+Plug 'ziglang/zig.vim'
+
+" Inlay hints
+Plug 'MysticalDevil/inlay-hints.nvim'
+
 
 Plug 'onsails/lspkind.nvim'
 
@@ -59,15 +73,14 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
 
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'karb94/neoscroll.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-Plug 'ThePrimeagen/vim-be-good'
-
 set background=dark
+" set background=light
 call plug#end()
 
 let g:lightline = {
@@ -77,17 +90,21 @@ let g:lightline = {
     \    }
 \}
 
+
 set nobackup
 set nowritebackup
 set updatetime=50
 set signcolumn=no " yes
 
 "switch buffers CTRL hjkl
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-
+" nmap <silent> <C-k> :wincmd k<CR>
+" nmap <silent> <C-j> :wincmd j<CR>
+" nmap <silent> <C-h> :wincmd h<CR>
+" nmap <silent> <C-l> :wincmd l<CR>
+nnoremap <silent> <C-h> <Cmd>NvimTmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> <Cmd>NvimTmuxNavigateDown<CR>
+nnoremap <silent> <C-k> <Cmd>NvimTmuxNavigateUp<CR>
+nnoremap <silent> <C-l> <Cmd>NvimTmuxNavigateRight<CR>
 
 
 imap <C-v> <Nop>
@@ -96,11 +113,14 @@ imap <C-s> <Nop>
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 
+nnoremap <silent> <leader>i <Cmd>GitBlameToggle<CR>
+nnoremap <silent> <leader>e <Cmd>NvimTreeToggle<CR>
+
 
 function! HeaderToggle()
 let file_path = expand("%")
 let file_name = expand("%<")
-let extension = split(file_path, '\.')[-1] " '\.' is how you really split on dot
+let extension = split(file_path, '\.')[-1]
 let err_msg = "There is no file "
 
 if extension == "cpp"
@@ -142,14 +162,22 @@ nnoremap <M-k> <C-W>5+
 nnoremap <esc> :noh<return><esc>
 
 let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = "hard"
 colorscheme gruvbox
 
-" highlight CursorLine ctermbg=0
 :luafile ~/.config/nvim/config.lua
 
-" let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
+
+let g:zig_fmt_autosave = 0
+
+let g:tmux_navigator_no_wrap = 1
+
+let g:gitblame_date_format = '%r'
+let g:gitblame_delay = 1
+let g:gitblame_highlight_group = "StatusLineNC"
+let g:gitblame_virtual_text_column = 85
 
 set splitbelow
 
@@ -163,9 +191,3 @@ set lazyredraw
 nnoremap d "_d
 xnoremap d "_d
 xnoremap p "_dP
-
-nnoremap <C-i> <C-^>
-nnoremap <C-o> <C-6>
-
-highlight EndOfBuffer ctermfg=black ctermbg=black
-" set termguicolors
