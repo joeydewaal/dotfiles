@@ -34,13 +34,10 @@ vim.keymap.set("n", "<leader>l", function() harpoon:list():select(4) end)
 -- vim.keymap.set("n", "<leader>a", function() harpoon:list():select(5) end)
 vim.keymap.set("n", "<leader>s", function() harpoon:list():select(6) end)
 vim.keymap.set("n", "<leader>d", function() harpoon:list():select(7) end)
-vim.keymap.set("n", "<leader>f", function() harpoon:list():select(8) end)
 
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
-    vim.keymap.set("x", "<" ,function()
+
+vim.keymap.set("x", "<" ,function()
         vim.cmd("normal! <")
         vim.cmd("normal! gv")
 end)
@@ -49,6 +46,7 @@ vim.keymap.set("x", ">" ,function()
     vim.cmd("normal! >")
     vim.cmd("normal! gv")
 end)
+
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "lua", "rust", "toml" },
@@ -63,6 +61,10 @@ require('nvim-treesitter.configs').setup {
     extended_mode = true,
     max_file_lines = nil,
   }
+}
+
+require('gitblame').setup {
+    enabled = false,
 }
 
 require("nvim-autopairs").setup {
@@ -82,10 +84,16 @@ require("nvim-autopairs").setup {
 }
 
 require("ibl").setup({
+    indent = {
+        char = "│",
+        smart_indent_cap = true,
+    },
     scope = {
+        enabled = true,
+        show_end = false,
         show_start = false,
         highlight = {
-            'GruvboxRed',
+            'GruvBoxRed',
         }
     },
 })
@@ -94,7 +102,7 @@ require("ibl").setup({
 require('telescope').setup{
     defaults = {
             file_ignore_patterns = {
-            "node_modules", "*.lock"
+            "node_modules", "*.lock", "target",
         }
     }
 }
@@ -154,6 +162,11 @@ cmp.setup({
 
 
 
+-- require("inlay-hints").setup({
+--   commands = { enable = true }, -- Enable InlayHints commands, include `InlayHintsToggle`, `InlayHintsEnable` and `InlayHintsDisable`
+--   autocmd = { enable = true } -- Enable the inlay hints on `LspAttach` event
+-- })
+
 
 -- Enable completing paths in :
 cmp.setup.cmdline(':', {
@@ -183,25 +196,20 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<f3>", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
-  buf_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
   buf_set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
-  -- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.nvim-tree-api.tree.close()<CR>', opts)
-    -- None of this semantics tokens business.
-  -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
   client.server_capabilities.semanticTokensProvider = nil
-
   -- Get signatures (and _only_ signatures) when in argument lists.
-  require "lsp_signature".on_attach({
-    doc_lines = 0,
-    handler_opts = {
-      border = "none"
-    },
-  })
+  -- require "lsp_signature".on_attach({
+  --   doc_lines = 0,
+  --   handler_opts = {
+  --     border = "none"
+  --   },
+  -- })
 end
 
 
@@ -236,21 +244,27 @@ local opts = {
 require("rust-tools").setup(opts)
 require('crates').setup()
 
-
 local lspconfig = require('lspconfig')
-
--- zig
-lspconfig.zls.setup{
-    on_attach = on_attach
-}
-
 
 -- React
 require('nvim-ts-autotag').setup()
-
 lspconfig.tsserver.setup{
     on_attach = on_attach
 }
+
+
+require("lspconfig").zls.setup({
+    on_attach = on_attach,
+  settings = {
+    zls = {
+      enable_inlay_hints = true,
+      inlay_hints_show_builtin = true,
+      inlay_hints_exclude_single_argument = true,
+      inlay_hints_hide_redundant_param_names = false,
+      inlay_hints_hide_redundant_param_names_last_token = false,
+    },
+  }
+})
 
 lspconfig.pyright.setup{}
 
