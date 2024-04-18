@@ -248,8 +248,17 @@ local lspconfig = require('lspconfig')
 
 -- React
 require('nvim-ts-autotag').setup()
+
 lspconfig.tsserver.setup{
     on_attach = on_attach
+}
+
+lspconfig.gopls.setup{
+    on_attach = on_attach,
+    cmd = {"gopls"},
+    settings = {
+        completeUnimplemented = true,
+    }
 }
 
 
