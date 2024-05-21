@@ -24,13 +24,14 @@ set smartcase
 set gdefault
 
 
-
 call plug#begin()
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
 Plug'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
 Plug 'itchyny/lightline.vim'
 
 Plug 'ThePrimeagen/harpoon' , { 'branch' : 'harpoon2' }
@@ -56,7 +57,6 @@ Plug 'ziglang/zig.vim'
 " Inlay hints
 Plug 'MysticalDevil/inlay-hints.nvim'
 
-
 Plug 'onsails/lspkind.nvim'
 
 Plug 'hrsh7th/cmp-buffer'
@@ -73,14 +73,14 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
 
+Plug 'williamboman/mason.nvim'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'karb94/neoscroll.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-set background=dark
-" set background=light
 call plug#end()
 
 let g:lightline = {
@@ -94,13 +94,9 @@ let g:lightline = {
 set nobackup
 set nowritebackup
 set updatetime=50
-set signcolumn=no " yes
+set signcolumn=no
 
 "switch buffers CTRL hjkl
-" nmap <silent> <C-k> :wincmd k<CR>
-" nmap <silent> <C-j> :wincmd j<CR>
-" nmap <silent> <C-h> :wincmd h<CR>
-" nmap <silent> <C-l> :wincmd l<CR>
 nnoremap <silent> <C-h> <Cmd>NvimTmuxNavigateLeft<CR>
 nnoremap <silent> <C-j> <Cmd>NvimTmuxNavigateDown<CR>
 nnoremap <silent> <C-k> <Cmd>NvimTmuxNavigateUp<CR>
@@ -138,7 +134,7 @@ elseif extension == "hpp"
         :e %<.cpp
     else
         echo join([err_msg, next_file], "")
-    endif
+    endifinit
 else
     echo ""
 endif
@@ -161,29 +157,17 @@ nnoremap <M-k> <C-W>5+
 
 nnoremap <esc> :noh<return><esc>
 
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = "hard"
-colorscheme gruvbox
-
-:luafile ~/.config/nvim/config.lua
-
-let g:rustfmt_emit_files = 1
-let g:rustfmt_fail_silently = 0
-
-let g:zig_fmt_autosave = 0
+:lua require('init_deps')
 
 let g:tmux_navigator_no_wrap = 1
-
-let g:gitblame_date_format = '%r'
-let g:gitblame_delay = 1
-let g:gitblame_highlight_group = "StatusLineNC"
-let g:gitblame_virtual_text_column = 85
 
 set splitbelow
 
 set undodir=~/.config/nvim/.undo
 set undofile
+
 set relativenumber
+
 set ttyfast
 set lazyredraw
 
