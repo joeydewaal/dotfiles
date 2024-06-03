@@ -17,6 +17,7 @@ require "_neoscroll"
 require "_cmp"
 require "_icons"
 require "_ts_autotag"
+require "nvim_tree"
 
 
 -- lsp
