@@ -1,0 +1,26 @@
+[general]
+import = [
+"~/.config/alacritty/themes/themes/hyper.toml"
+]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 10.5
+
+[font.normal]
+family = "RobotoMono Nerd Font"
+style = "Medium"
+
+[scrolling]
+history = 100000
+
+[window]
+dynamic_title = true
+option_as_alt = "OnlyLeft"
+title = "Terminal"
