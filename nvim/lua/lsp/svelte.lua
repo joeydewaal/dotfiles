@@ -1,7 +1,8 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.lsp.config("pyright", {
+
+vim.lsp.config("svelte", {
     capabilities = capabilities
 })
 
-vim.lsp.enable({ "pyright" })
+vim.lsp.enable({ "svelte" })

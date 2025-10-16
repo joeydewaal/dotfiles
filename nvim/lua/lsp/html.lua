@@ -1,7 +1,7 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.lsp.config("pyright", {
+vim.lsp.config("html", {
     capabilities = capabilities
 })
 
-vim.lsp.enable({ "pyright" })
+vim.lsp.enable({ "html" })

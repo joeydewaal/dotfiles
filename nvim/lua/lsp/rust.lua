@@ -1,11 +1,8 @@
-local on_attach = require("lsp.utils").on_attach
-
-
 vim.g.rustfmt_emit_files = 1
 vim.g.rustfmt_fail_silently = 0
 
 
-local opts = {
+require("rust-tools").setup {
     tools = {
         runnables = {
             use_telescope = true,
@@ -18,7 +15,6 @@ local opts = {
         },
     },
     server = {
-        on_attach = on_attach,
         settings = {
             ["rust-analyzer"] = {
                 cargo = {
@@ -33,5 +29,12 @@ local opts = {
         },
     },
 }
-require("rust-tools").setup(opts)
-require('crates').setup()
+
+require("crates").setup {
+    lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+    },
+}

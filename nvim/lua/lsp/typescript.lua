@@ -1,6 +1,8 @@
-local lspconfig = require('lspconfig')
-local on_attach = require("lsp.utils").on_attach
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.tsserver.setup {
-    on_attach = on_attach
-}
+
+vim.lsp.config("ts_ls",
+    { capabilities = capabilities }
+)
+
+vim.lsp.enable({ "ts_ls" })
