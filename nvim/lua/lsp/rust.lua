@@ -2,7 +2,7 @@ vim.g.rustfmt_emit_files = 1
 vim.g.rustfmt_fail_silently = 0
 
 
-require("rust-tools").setup {
+vim.g.rustaceanvim = {
     tools = {
         runnables = {
             use_telescope = true,

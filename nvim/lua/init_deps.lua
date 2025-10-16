@@ -44,32 +44,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.opt.signcolumn = "yes:1"
 
-local signs = {
-    Error = "E",
-    Warn = "W",
-    Hint = "H",
-    Info = "I"
-}
+-- local signs = {
+--     Error = "E",
+--     Warn = "W",
+--     Hint = "H",
+--     Info = "I"
+-- }
 
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {
-        text = icon,
-        texthl = hl,
-        numhl = hl
-    })
-end
+-- for type, icon in pairs(signs) do
+--     local hl = "DiagnosticSign" .. type
+--     vim.fn.sign_define(hl, {
+--         text = icon,
+--         texthl = hl,
+--         numhl = hl
+--     })
+-- end
 
--- Diagnostics
--- vim.diagnostic.config({
---     virtual_lines = {
---         severity = {
---             min = vim.diagnostic.severity.INFO
---         },
---         -- Only show virtual line diagnostics for the current cursor line
---         -- current_line = true,
---     },
--- })
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = 'E',
+            [vim.diagnostic.severity.WARN] = 'W',
+            [vim.diagnostic.severity.HINT] = 'H',
+            [vim.diagnostic.severity.INFO] = 'I',
+        },
+        linehl = {
+            -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+        },
+        numhl = {
+            -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
+        },
+    },
+})
+
 
 -- looks
 require "colorscheme"
@@ -91,9 +98,10 @@ require "_cmp"
 require "_icons"
 require "_ts_autotag"
 require "nvim_tree"
+require "_end_hints"
 
 -- lsp
--- require "lsp/rust"
+require "lsp/rust"
 require "lsp/go"
 require "lsp/typescript"
 require "lsp/zig"

@@ -53,6 +53,8 @@ Plug('ThePrimeagen/harpoon', { branch = 'harpoon2' })
 Plug('f-person/git-blame.nvim')
 Plug('sindrets/diffview.nvim')
 
+Plug('chrisgrieser/nvim-lsp-endhints')
+
 Plug('windwp/nvim-autopairs')
 Plug('ntpeters/vim-better-whitespace')
 Plug('tpope/vim-commentary')
@@ -60,6 +62,7 @@ Plug('tpope/vim-commentary')
 --  Rust
 Plug('rust-lang/rust.vim')
 Plug('simrat39/rust-tools.nvim')
+Plug('mrcjkb/rustaceanvim')
 Plug('saecki/crates.nvim', { tag = 'v0.6.0' })
 
 --  React
@@ -146,10 +149,7 @@ vim.opt.lazyredraw = true
 -- Global variables
 vim.g.tmux_navigator_no_wrap = 1
 vim.g.lightline = {
-    colorscheme = 'seoul256',
-    component = {
-        filename = '%f'
-    }
+    colorscheme = 'seoul256', component = { filename = '%f' }
 }
 
 
