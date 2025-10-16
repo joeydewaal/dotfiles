@@ -1,5 +1,3 @@
-require("mason").setup()
-
 vim.g.rustfmt_emit_files = 1
 vim.g.rustfmt_fail_silently = 0
 

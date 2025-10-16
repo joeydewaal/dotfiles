@@ -1,6 +1,4 @@
-local lspconfig = require('lspconfig')
-
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
     cmd = {
         "/usr/bin/clangd",
         "--background-index",
@@ -18,4 +16,6 @@ lspconfig.clangd.setup {
         "--completion-style=detailed"
     },
     init_option = { fallbackFlags = { "-std=c++2a" } }
-}
+})
+
+vim.lsp.enable({ "clangd" })

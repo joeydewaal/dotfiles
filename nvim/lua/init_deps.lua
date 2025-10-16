@@ -93,7 +93,7 @@ require "_ts_autotag"
 require "nvim_tree"
 
 -- lsp
-require "lsp/rust"
+-- require "lsp/rust"
 require "lsp/go"
 require "lsp/typescript"
 require "lsp/zig"
@@ -102,3 +102,5 @@ require "lsp/clangd"
 require "lsp/html"
 require "lsp/svelte"
 require "lsp/arduino"
+
+require("mason").setup()

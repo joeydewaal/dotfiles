@@ -39,60 +39,61 @@ vim.call('plug#begin')
 
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
 
-Plug 'christoomey/vim-tmux-navigator'
+Plug('christoomey/vim-tmux-navigator')
 
-Plug 'morhetz/gruvbox'
+Plug('morhetz/gruvbox')
+Plug('projekt0n/github-nvim-theme')
 Plug('catppuccin/nvim', { as = 'catppuccin' })
 
-Plug 'itchyny/lightline.vim'
+Plug('itchyny/lightline.vim')
 
 Plug('ThePrimeagen/harpoon', { branch = 'harpoon2' })
 
 --  Github info
-Plug 'f-person/git-blame.nvim'
-Plug 'sindrets/diffview.nvim'
+Plug('f-person/git-blame.nvim')
+Plug('sindrets/diffview.nvim')
 
-Plug 'windwp/nvim-autopairs'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-commentary'
+Plug('windwp/nvim-autopairs')
+Plug('ntpeters/vim-better-whitespace')
+Plug('tpope/vim-commentary')
 
 --  Rust
-Plug 'rust-lang/rust.vim'
-Plug 'simrat39/rust-tools.nvim'
+Plug('rust-lang/rust.vim')
+Plug('simrat39/rust-tools.nvim')
 Plug('saecki/crates.nvim', { tag = 'v0.6.0' })
 
 --  React
-Plug 'windwp/nvim-ts-autotag'
+Plug('windwp/nvim-ts-autotag')
 
 --  Zig
-Plug 'ziglang/zig.vim'
+Plug('ziglang/zig.vim')
 
 --  Inlay hints
-Plug 'MysticalDevil/inlay-hints.nvim'
+Plug('MysticalDevil/inlay-hints.nvim')
 
-Plug 'onsails/lspkind.nvim'
+Plug('onsails/lspkind.nvim')
 
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip'
+Plug('hrsh7th/cmp-buffer')
+Plug('hrsh7th/cmp-path')
+Plug('hrsh7th/cmp-cmdline')
+Plug('hrsh7th/cmp-nvim-lsp-signature-help')
+Plug('hrsh7th/cmp-vsnip')
+Plug('hrsh7th/vim-vsnip')
+-- Plug('neovim/nvim-lspconfig')
+Plug('hrsh7th/nvim-cmp')
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('L3MON4D3/LuaSnip')
 
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'nvim-tree/nvim-web-devicons'
+Plug('nvim-tree/nvim-tree.lua')
+Plug('nvim-tree/nvim-web-devicons')
 
-Plug 'mason-org/mason.nvim'
+Plug('mason-org/mason.nvim')
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-Plug 'karb94/neoscroll.nvim'
-Plug 'nvim-lua/plenary.nvim'
+Plug('karb94/neoscroll.nvim')
+Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.8' })
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug('lukas-reineke/indent-blankline.nvim')
 vim.call('plug#end')
 
 

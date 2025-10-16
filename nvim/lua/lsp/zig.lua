@@ -1,8 +1,6 @@
-local lspconfig = require('lspconfig')
-
 vim.g.zig_fmt_autosave = 0
 
-lspconfig.zls.setup({
+vim.lsp.config("zls", {
     settings = {
         zls = {
             enable_inlay_hints = true,
@@ -13,3 +11,5 @@ lspconfig.zls.setup({
         },
     }
 })
+
+vim.lsp.enable({ "zls" })
