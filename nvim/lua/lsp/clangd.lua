@@ -1,9 +1,10 @@
 vim.lsp.config("clangd", {
+    filetypes = { "c", "cpp", "objc", "objcpp" },
     cmd = {
         "/usr/bin/clangd",
         "--background-index",
         "--pch-storage=memory",
-        "--clang-tidy=0",
+        "--clang-tidy",
         "--suggest-missing-includes",
         "--all-scopes-completion",
         "--pretty",

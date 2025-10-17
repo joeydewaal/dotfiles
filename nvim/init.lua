@@ -61,7 +61,6 @@ Plug('tpope/vim-commentary')
 
 --  Rust
 Plug('rust-lang/rust.vim')
-Plug('simrat39/rust-tools.nvim')
 Plug('mrcjkb/rustaceanvim')
 Plug('saecki/crates.nvim', { tag = 'v0.6.0' })
 
@@ -97,6 +96,7 @@ Plug('karb94/neoscroll.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.8' })
 Plug('lukas-reineke/indent-blankline.nvim')
+Plug('stevearc/conform.nvim')
 vim.call('plug#end')
 
 

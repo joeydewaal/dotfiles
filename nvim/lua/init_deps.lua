@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             -- vim.lsp.completion.enable(true, client.id, ev.buf, {
             --     autotrigger = true,
             -- })
-            client.server_capabilities.semanticTokensProvider = nil
+            -- client.server_capabilities.semanticTokensProvider = nil
         end
 
         local function buf_set_keymap(mode, map, cmd)
@@ -44,22 +44,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.opt.signcolumn = "yes:1"
 
--- local signs = {
---     Error = "E",
---     Warn = "W",
---     Hint = "H",
---     Info = "I"
--- }
-
--- for type, icon in pairs(signs) do
---     local hl = "DiagnosticSign" .. type
---     vim.fn.sign_define(hl, {
---         text = icon,
---         texthl = hl,
---         numhl = hl
---     })
--- end
-
 vim.diagnostic.config({
     signs = {
         text = {
@@ -67,12 +51,6 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.WARN] = 'W',
             [vim.diagnostic.severity.HINT] = 'H',
             [vim.diagnostic.severity.INFO] = 'I',
-        },
-        linehl = {
-            -- [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-        },
-        numhl = {
-            -- [vim.diagnostic.severity.WARN] = 'WarningMsg',
         },
     },
 })
