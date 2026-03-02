@@ -1,6 +1,8 @@
+local mason_path = require('lsp.mason_util')
 vim.g.zig_fmt_autosave = 0
 
 vim.lsp.config("zls", {
+    cmd = { mason_path("zls") },
     settings = {
         zls = {
             enable_inlay_hints = true,

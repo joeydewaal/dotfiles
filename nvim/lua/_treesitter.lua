@@ -1,5 +1,5 @@
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { "lua", "rust", "toml" },
+require('nvim-treesitter').setup {
+    install_dir = vim.fn.stdpath('data') .. '/site',
     auto_install = true,
     highlight = {
         enable = true,
@@ -7,8 +7,9 @@ require('nvim-treesitter.configs').setup {
     },
     ident = { enable = true },
     rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
     }
 }
+require('nvim-treesitter').install({ 'rust', 'lua', 'toml' })
