@@ -151,6 +151,8 @@ vim.g.lightline = {
     colorscheme = 'seoul256', component = { filename = '%f' }
 }
 
+vim.cmd [[ au BufEnter * setlocal cursorline ]]
+vim.cmd [[ au BufLeave * setlocal nocursorline ]]
 
 -- Load dependencies
 require('init_deps')
