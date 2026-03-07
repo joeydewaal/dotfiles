@@ -12,4 +12,4 @@ require('nvim-treesitter').setup {
         max_file_lines = nil,
     }
 }
-require('nvim-treesitter').install({ 'rust', 'lua', 'toml' })
+require('nvim-treesitter').install({ 'rust', 'lua', 'toml', 'svelte', 'html', 'css', 'javascript', 'typescript' })
