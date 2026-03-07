@@ -41,7 +41,7 @@ require "_end_hints"
 -- lsp
 require "lsp/rust"
 -- require "lsp/go"
--- require "lsp/typescript"
+require "lsp/typescript"
 -- require "lsp/zig"
 require "lsp/python"
 require "lsp/clangd"
