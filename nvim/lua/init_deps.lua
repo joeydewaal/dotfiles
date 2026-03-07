@@ -46,7 +46,7 @@ require "lsp/rust"
 require "lsp/python"
 require "lsp/clangd"
 -- require "lsp/html"
--- require "lsp/svelte"
+require "lsp/svelte"
 -- require "lsp/arduino"
 require "lsp/scheme"
 
@@ -66,8 +66,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
         buf_set_keymap('n', 'gd', vim.lsp.buf.definition)
         buf_set_keymap('n', 'gD', function()
-            vim.lsp.buf.definition()
             vim.cmd('vsplit')
+            vim.lsp.buf.definition()
         end)
         buf_set_keymap('n', 'N', vim.lsp.buf.hover)
         buf_set_keymap('n', 'gi', vim.lsp.buf.implementation)
