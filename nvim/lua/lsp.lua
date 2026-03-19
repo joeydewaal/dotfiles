@@ -1,6 +1,14 @@
-vim.g.rustfmt_emit_files = 1
-vim.g.rustfmt_fail_silently = 0
-
+vim.lsp.config('lua_ls', {
+    root_markers = { 'init.lua' },
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+        }
+    }
+})
 
 vim.g.rustaceanvim = {
     tools = {
@@ -30,11 +38,12 @@ vim.g.rustaceanvim = {
     },
 }
 
-require("crates").setup {
-    lsp = {
-        enabled = true,
-        actions = true,
-        completion = true,
-        hover = true,
-    },
-}
+vim.lsp.enable({
+    'lua_ls',
+    'rust_analyzer',
+    'ts_ls',
+    'ty', -- python
+    'clangd',
+    'svelte',
+    'racket_langserver'
+})
