@@ -3,11 +3,14 @@ require("gruvbox").setup({
     background = "dark"
 })
 vim.cmd("colorscheme gruvbox")
+-- vim.api.nvim_set_hl(0, "@keyword.import", { link = "GruvboxRed" })
+-- require('onedark').setup({ style = 'warmer' })
+-- require('onedark').load()
 
 vim.opt.termguicolors = true
 
 -- From a goated reddit post, make sure treesitter highlighting takes priority over lsp semantic tokens.
-vim.highlight.priorities.semantic_tokens = 95
+-- vim.highlight.priorities.semantic_tokens = 95
 
 require("ibl").setup({
     indent = {

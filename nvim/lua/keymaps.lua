@@ -17,7 +17,6 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set("n", "<leader>G", "<Cmd>Telescope resume<CR>", { silent = true })
 vim.keymap.set('n', '<leader>s', builtin.lsp_workspace_symbols, {})
 vim.keymap.set('n', '<leader>r', builtin.lsp_references, {})
-vim.keymap.set("n", "<leader>G", "<Cmd>Telescope resume<CR>", { silent = true })
 
 
 -- Lsp keymaps

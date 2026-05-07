@@ -17,6 +17,7 @@ vim.g.mapleader = " "
 
 -- Show horizontal cursorline
 vim.opt.cursorline = true
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- vim.opt.gdefault = true
 
@@ -28,7 +29,16 @@ vim.opt.undodir = vim.fn.expand("~/.config/nvim/.undo")
 vim.opt.undofile = true
 
 vim.opt.relativenumber = true
-vim.opt.lazyredraw = true
+
+vim.opt.inccommand = "split"
+vim.opt.confirm = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.updatetime = 250
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("yank_highlight", { clear = true }),
+    callback = function() vim.hl.on_yank() end,
+})
 
 
 vim.pack.add({
@@ -47,6 +57,7 @@ vim.pack.add({
     "https://github.com/nvim-tree/nvim-web-devicons",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/nvim-treesitter/nvim-treesitter",
+    "https://github.com/navarasu/onedark.nvim",
 })
 
 require 'moving'

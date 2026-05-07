@@ -40,10 +40,9 @@ vim.g.rustaceanvim = {
 
 vim.lsp.enable({
     'lua_ls',
-    'rust_analyzer',
+    'svelte',
     'ts_ls',
     'ty', -- python
     'clangd',
-    'svelte',
     'racket_langserver'
 })
