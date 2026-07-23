@@ -27,6 +27,9 @@ vim.g.rustaceanvim = {
             ["rust-analyzer"] = {
                 cargo = {
                     allFeatures = true,
+                    -- Build into target/rust-analyzer so RA's `cargo check`
+                    -- never locks the same build dir as `cargo test`.
+                    targetDir = true,
                 },
                 completion = {
                     postfix = {

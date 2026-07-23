@@ -24,8 +24,3 @@ history = 100000
 dynamic_title = true
 option_as_alt = "OnlyLeft"
 title = "Terminal"
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"
